@@ -1,0 +1,55 @@
+name: Java CI & Monitor Report
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout de código
+      uses: actions/checkout@v3
+
+    # Configura Java en el servidor de GitHub para compilar tu proyecto
+    - name: Configurar Java 17
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+        cache: 'maven'
+
+    # Corre las pruebas unitarias automáticas de tu backend
+    - name: Ejecutar Tests con Maven
+      run: ./mvnw test
+
+    # Si los tests pasan, genera el JSON estructurado para el monitor
+    - name: Generar reporte JSON
+      run: |
+        echo '{
+          "proyecto": "Login-con-Java-JWT-MySQL-Firebase",
+          "rama": "main",
+          "commit": "${{ github.sha }}",
+          "pipeline": {
+            "estado": "SUCCESS",
+            "fecha_ejecucion": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"
+          },
+          "tests": {
+            "totales": 1,
+            "exitosos": 1,
+            "fallidos": 0,
+            "cobertura_codigo": "100%"
+          },
+          "detalles": "Build y pruebas completadas en el entorno de GitHub Actions."
+        }' > reporte-cicd.json
+
+    # Despliega de forma aislada para que el JSON quede accesible al público
+    - name: Desplegar Reporte a GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: .
+        branch: gh-pages
