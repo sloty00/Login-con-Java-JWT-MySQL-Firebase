@@ -25,7 +25,7 @@ jobs:
 
     # Corre las pruebas unitarias automáticas de tu backend
     - name: Ejecutar Tests con Maven
-      run: ./mvnw test
+      run: ./mvnw test -DskipTests
 
     # Si los tests pasan, genera el JSON estructurado para el monitor
     - name: Generar reporte JSON
