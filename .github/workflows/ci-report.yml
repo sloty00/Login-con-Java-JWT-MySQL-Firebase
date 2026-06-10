@@ -52,7 +52,7 @@ jobs:
           "metricas": {
             "dependencias_desactualizadas": '${{ env.DEPS }}'
           },
-          "detalles": "Build completado con éxito usando Java 21 de forma integrada."
+          "detalles": "Sincronizado: Build OK | Entorno Windows | Despliegue completado."
         }' > reporte-cicd.json
 
     - name: Desplegar Reporte a GitHub Pages
