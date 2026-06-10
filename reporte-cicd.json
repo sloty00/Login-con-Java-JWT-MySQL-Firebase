@@ -1,10 +1,10 @@
 {
   "proyecto": "Login-con-Java-JWT-MySQL-Firebase",
   "rama": "main",
-  "commit": "ee0e32a75a004939ccd02b09193945cacf657a62",
+  "commit": "742270cae1a24973387796aca39e294fbb6f5aae",
   "pipeline": {
     "estado": "SUCCESS",
-    "fecha_ejecucion": "2026-06-07T00:14:27Z"
+    "fecha_ejecucion": "2026-06-10T02:41:53Z"
   },
   "tests": {
     "totales": 1,
@@ -15,5 +15,5 @@
   "metricas": {
     "dependencias_desactualizadas": 0
   },
-  "detalles": "Build completado con éxito usando Java 21 de forma integrada."
+  "detalles": "Sincronizado: Build OK | Entorno Windows | Despliegue completado."
 }
